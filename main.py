@@ -4,6 +4,15 @@ from quiz_brain import QuizBrain
 
 
 def create_question_bank(data):
+    """
+       Convert a list of dictionaries into a list of Question objects.
+
+       Args:
+           data (List[Dict[str, str]]): List of dictionaries with keys 'text' and 'answer'.
+
+       Returns:
+           List[Question]: List of Question objects.
+       """
     return [Question(item["text"], item["answer"]) for item in data]
 
 
