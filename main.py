@@ -1,11 +1,21 @@
 from data import question_data
 from question_model import Question
+from quiz_brain import QuizBrain
 
-def do_question_bank():
+
+def create_question_bank(data):
     questions = []
-    for question in question_data:
-        questions.append(Question(question['text'], question['answer']))
+    for item in data:
+        questions.append(Question(item['text'], item['answer']))
     return questions
 
-question_bank = do_question_bank()
-print(question_bank)
+
+question_bank = create_question_bank(question_data)
+
+quiz = QuizBrain(question_bank)
+
+while quiz.still_has_questions():
+    quiz.do_question()
+
+score, total = quiz.get_score()
+print(f"Your final score: {score}/{total}")
